@@ -112,10 +112,14 @@ a {
   color: var(--color_tertiary);
 }
 
-p {
+p,
+.wp-block-paragraph {
+  font-family: var(--font_body);
   font-size: 1rem !important;
   line-height: 1.25rem !important;
   color: var(--color_key);
+  margin: 0 0 16px !important;
+  padding: 0 !important;
 }
 
 h1 {
@@ -157,6 +161,30 @@ h4 {
 
 .dss-block--acf-buttons .menu {
   flex-direction: row;
+}
+
+.dss-block--acf-buttons .menu.items-center .btn {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dss-block--acf-buttons .menu.items-center a.btn--primary:hover,
+.dss-block--acf-buttons .menu.items-center a.btn--primary:focus-visible {
+  color: var(--color_white) !important;
+  background-color: var(--color_primary_75) !important;
+  border-color: var(--color_primary_75) !important;
+  box-shadow: var(--shadow_box_hover);
+}
+
+.dss-block--acf-buttons .menu.items-center a.btn--secondary:hover,
+.dss-block--acf-buttons .menu.items-center a.btn--secondary:focus-visible {
+  color: var(--color_key) !important;
+  background-color: var(--color_primary_10) !important;
+  border-color: var(--color_primary) !important;
+  box-shadow: var(--shadow_box_hover);
 }
 
 /*------------------------Toppmeny / footer------------------------- */
