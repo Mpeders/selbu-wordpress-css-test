@@ -393,16 +393,15 @@ img.featured-image {
   }
 }
 
-/*---------------- Automatic structural mapping: all Selbu pages ----------------
-  These selectors recognize existing Selbu module structures automatically.
-  Image/text blocks are styled directly; button grids require at least five
-  items; column grids must contain image modules. This avoids converting
-  ordinary text columns and small call-to-action button groups into cards.
-  Add web3-skip to a block in WordPress to opt out of automatic styling.
+/*---------------- Automatic mapping: Selbu front page ----------------
+  The current front page does not contain the Stbank helper classes.
+  These selectors apply the corresponding layouts automatically, but
+  are restricted to body.home.page-id-19 so ordinary content pages are
+  not converted into cards.
 --------------------------------------------------------------------- */
 
 /* Hero and image/text teasers */
-body main#content .content-blocks > .dss-block--acf-image-text:not(.web3-skip) {
+body.home.page-id-19 main#content .content-blocks > .dss-block--acf-image-text {
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -411,12 +410,10 @@ body main#content .content-blocks > .dss-block--acf-image-text:not(.web3-skip) {
   box-shadow: var(--shadow_box);
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
-    1 of .dss-block--acf-image-text
-  ) {
+  > .dss-block--acf-image-text:nth-child(1 of .dss-block--acf-image-text) {
   width: 100%;
   max-width: none;
   margin-top: 0;
@@ -424,21 +421,19 @@ body
   border-radius: var(--border_radius_container);
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
-    n + 2 of .dss-block--acf-image-text
-  ) {
+  > .dss-block--acf-image-text:nth-child(n + 2 of .dss-block--acf-image-text) {
   width: 100%;
   max-width: 1120px;
   margin-bottom: 64px;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip)
+  > .dss-block--acf-image-text
   .dss-block__inner {
   display: flex;
   align-items: stretch;
@@ -446,10 +441,10 @@ body
   min-height: 100%;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip)
+  > .dss-block--acf-image-text
   .dss-block__content {
   display: flex;
   flex: 1 1 50%;
@@ -461,18 +456,18 @@ body
   background-color: var(--color_white) !important;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip)
+  > .dss-block--acf-image-text
   .acf-innerblocks-container {
   width: 100%;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip)
+  > .dss-block--acf-image-text
   img {
   flex: 1 1 50%;
   align-self: stretch;
@@ -485,37 +480,32 @@ body
   aspect-ratio: 4 / 3;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
-    1 of .dss-block--acf-image-text
-  )
+  > .dss-block--acf-image-text:nth-child(1 of .dss-block--acf-image-text)
   img {
   aspect-ratio: 16 / 9;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:not(.web3-skip)
+  > .dss-block--acf-image-text
   .dss-block--acf-buttons {
   margin: 24px 0 0;
 }
 
-/* Quick-link grids with at least five items */
-body
-  main#content
-  .content-blocks
-  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5)) {
+/* Front-page quick links */
+body.home.page-id-19 main#content .content-blocks > .dss-block--acf-buttons {
   margin-left: 0;
   margin-right: 0;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+  > .dss-block--acf-buttons
   .menu {
   display: flex;
   flex-direction: row;
@@ -529,20 +519,20 @@ body
   column-gap: 16px;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+  > .dss-block--acf-buttons
   .menu
   li {
   flex-basis: 21%;
   min-width: fit-content;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+  > .dss-block--acf-buttons
   a.btn--secondary {
   justify-content: flex-start;
   width: 100%;
@@ -553,10 +543,10 @@ body
   border-radius: var(--border_radius_buttons);
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+  > .dss-block--acf-buttons
   a.btn--primary {
   justify-content: flex-start;
   width: 100%;
@@ -568,12 +558,7 @@ body
 }
 
 /* Two- and three-column card rows */
-body
-  main#content
-  .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  ) {
+body.home.page-id-19 main#content .content-blocks > .wp-block-columns {
   max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
@@ -581,12 +566,10 @@ body
   grid-gap: 32px;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column {
   overflow: hidden;
   background-color: var(--color_white);
@@ -594,24 +577,20 @@ body
   box-shadow: var(--shadow_box);
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column
   > .dss-block--acf-image {
   height: auto;
   margin: 0;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column
   img {
   display: block;
@@ -623,36 +602,30 @@ body
   aspect-ratio: 16 / 9;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column
   > h2 {
   margin: 0 !important;
   padding: 24px !important;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column
   > p {
   margin: 0 !important;
   padding: 0 24px !important;
 }
 
-body
+body.home.page-id-19
   main#content
   .content-blocks
-  > .wp-block-columns:not(.web3-skip):has(
-    > .wp-block-column > .dss-block--acf-image
-  )
+  > .wp-block-columns
   > .wp-block-column
   > .dss-block--acf-buttons {
   margin: 0 !important;
@@ -660,10 +633,10 @@ body
 }
 
 @media (max-width: 1020px) {
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+    > .dss-block--acf-buttons
     .menu
     li {
     flex-basis: 30%;
@@ -671,47 +644,47 @@ body
 }
 
 @media (max-width: 781px) {
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-image-text:not(.web3-skip)
+    > .dss-block--acf-image-text
     .dss-block__inner {
     flex-direction: column;
   }
 
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-image-text:not(.web3-skip)
+    > .dss-block--acf-image-text
     .dss-block__content {
     order: 2;
     width: 100%;
     padding: 24px;
   }
 
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-image-text:not(.web3-skip)
+    > .dss-block--acf-image-text
     img {
     order: 1;
     width: 100% !important;
     aspect-ratio: 16 / 9;
   }
 
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+    > .dss-block--acf-buttons
     .menu {
     row-gap: 8px;
     column-gap: 8px;
   }
 
-  body
+  body.home.page-id-19
     main#content
     .content-blocks
-    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
+    > .dss-block--acf-buttons
     .menu
     li {
     flex-basis: 48%;
