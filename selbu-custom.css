@@ -393,15 +393,16 @@ img.featured-image {
   }
 }
 
-/*---------------- Automatic mapping: Selbu front page ----------------
-  The current front page does not contain the Stbank helper classes.
-  These selectors apply the corresponding layouts automatically, but
-  are restricted to body.home.page-id-19 so ordinary content pages are
-  not converted into cards.
+/*---------------- Automatic structural mapping: all Selbu pages ----------------
+  These selectors recognize existing Selbu module structures automatically.
+  Image/text blocks are styled directly; button grids require at least five
+  items; column grids must contain image modules. This avoids converting
+  ordinary text columns and small call-to-action button groups into cards.
+  Add web3-skip to a block in WordPress to opt out of automatic styling.
 --------------------------------------------------------------------- */
 
 /* Hero and image/text teasers */
-body.home.page-id-19 main#content .content-blocks > .dss-block--acf-image-text {
+body main#content .content-blocks > .dss-block--acf-image-text:not(.web3-skip) {
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -410,10 +411,12 @@ body.home.page-id-19 main#content .content-blocks > .dss-block--acf-image-text {
   box-shadow: var(--shadow_box);
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:nth-child(1 of .dss-block--acf-image-text) {
+  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
+    1 of .dss-block--acf-image-text
+  ) {
   width: 100%;
   max-width: none;
   margin-top: 0;
@@ -421,19 +424,21 @@ body.home.page-id-19
   border-radius: var(--border_radius_container);
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:nth-child(n + 2 of .dss-block--acf-image-text) {
+  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
+    n + 2 of .dss-block--acf-image-text
+  ) {
   width: 100%;
   max-width: 1120px;
   margin-bottom: 64px;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text
+  > .dss-block--acf-image-text:not(.web3-skip)
   .dss-block__inner {
   display: flex;
   align-items: stretch;
@@ -441,10 +446,10 @@ body.home.page-id-19
   min-height: 100%;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text
+  > .dss-block--acf-image-text:not(.web3-skip)
   .dss-block__content {
   display: flex;
   flex: 1 1 50%;
@@ -456,18 +461,18 @@ body.home.page-id-19
   background-color: var(--color_white) !important;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text
+  > .dss-block--acf-image-text:not(.web3-skip)
   .acf-innerblocks-container {
   width: 100%;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text
+  > .dss-block--acf-image-text:not(.web3-skip)
   img {
   flex: 1 1 50%;
   align-self: stretch;
@@ -480,32 +485,37 @@ body.home.page-id-19
   aspect-ratio: 4 / 3;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text:nth-child(1 of .dss-block--acf-image-text)
+  > .dss-block--acf-image-text:not(.web3-skip):nth-child(
+    1 of .dss-block--acf-image-text
+  )
   img {
   aspect-ratio: 16 / 9;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-image-text
+  > .dss-block--acf-image-text:not(.web3-skip)
   .dss-block--acf-buttons {
   margin: 24px 0 0;
 }
 
-/* Front-page quick links */
-body.home.page-id-19 main#content .content-blocks > .dss-block--acf-buttons {
+/* Quick-link grids with at least five items */
+body
+  main#content
+  .content-blocks
+  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5)) {
   margin-left: 0;
   margin-right: 0;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-buttons
+  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
   .menu {
   display: flex;
   flex-direction: row;
@@ -519,20 +529,20 @@ body.home.page-id-19
   column-gap: 16px;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-buttons
+  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
   .menu
   li {
   flex-basis: 21%;
   min-width: fit-content;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-buttons
+  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
   a.btn--secondary {
   justify-content: flex-start;
   width: 100%;
@@ -543,10 +553,10 @@ body.home.page-id-19
   border-radius: var(--border_radius_buttons);
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .dss-block--acf-buttons
+  > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
   a.btn--primary {
   justify-content: flex-start;
   width: 100%;
@@ -558,7 +568,12 @@ body.home.page-id-19
 }
 
 /* Two- and three-column card rows */
-body.home.page-id-19 main#content .content-blocks > .wp-block-columns {
+body
+  main#content
+  .content-blocks
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  ) {
   max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
@@ -566,10 +581,12 @@ body.home.page-id-19 main#content .content-blocks > .wp-block-columns {
   grid-gap: 32px;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column {
   overflow: hidden;
   background-color: var(--color_white);
@@ -577,20 +594,24 @@ body.home.page-id-19
   box-shadow: var(--shadow_box);
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column
   > .dss-block--acf-image {
   height: auto;
   margin: 0;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column
   img {
   display: block;
@@ -602,30 +623,36 @@ body.home.page-id-19
   aspect-ratio: 16 / 9;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column
   > h2 {
   margin: 0 !important;
   padding: 24px !important;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column
   > p {
   margin: 0 !important;
   padding: 0 24px !important;
 }
 
-body.home.page-id-19
+body
   main#content
   .content-blocks
-  > .wp-block-columns
+  > .wp-block-columns:not(.web3-skip):has(
+    > .wp-block-column > .dss-block--acf-image
+  )
   > .wp-block-column
   > .dss-block--acf-buttons {
   margin: 0 !important;
@@ -633,10 +660,10 @@ body.home.page-id-19
 }
 
 @media (max-width: 1020px) {
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-buttons
+    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
     .menu
     li {
     flex-basis: 30%;
@@ -644,47 +671,47 @@ body.home.page-id-19
 }
 
 @media (max-width: 781px) {
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-image-text
+    > .dss-block--acf-image-text:not(.web3-skip)
     .dss-block__inner {
     flex-direction: column;
   }
 
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-image-text
+    > .dss-block--acf-image-text:not(.web3-skip)
     .dss-block__content {
     order: 2;
     width: 100%;
     padding: 24px;
   }
 
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-image-text
+    > .dss-block--acf-image-text:not(.web3-skip)
     img {
     order: 1;
     width: 100% !important;
     aspect-ratio: 16 / 9;
   }
 
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-buttons
+    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
     .menu {
     row-gap: 8px;
     column-gap: 8px;
   }
 
-  body.home.page-id-19
+  body
     main#content
     .content-blocks
-    > .dss-block--acf-buttons
+    > .dss-block--acf-buttons:not(.web3-skip):has(.menu > li:nth-child(5))
     .menu
     li {
     flex-basis: 48%;
