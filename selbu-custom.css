@@ -129,7 +129,7 @@ p,
 /*------------------------ Avsnitt / løpende tekst ------------------------- */
 
 /*
-  Samler frittstående overskrifter og avsnitt i samme, lesbare tekstspalte.
+  Samler frittstående overskrifter, avsnitt og lister i samme tekstspalte.
   web3-skip kan brukes på enkeltblokker som skal beholde original plassering.
 */
 body
@@ -138,6 +138,7 @@ body
   > :is(
     .wp-block-heading,
     .wp-block-paragraph,
+    .wp-block-list,
     .dss-block--acf-paragraph,
     .dss-block--acf-rich-text,
     .dss-block--acf-text
@@ -156,6 +157,39 @@ body main#content .content-blocks > .wp-block-heading:not(.web3-skip) {
 
 body main#content .content-blocks > .wp-block-paragraph:not(.web3-skip) {
   margin-bottom: 24px !important;
+}
+
+body main#content .content-blocks > .wp-block-list:not(.web3-skip) {
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding-left: 1.5rem;
+}
+
+body main#content .content-blocks .wp-block-list,
+body main#content .content-blocks .wp-block-list li {
+  font-family: var(--font_body);
+  font-size: 1rem !important;
+  line-height: 1.25rem !important;
+  color: var(--color_key);
+}
+
+body main#content .content-blocks .wp-block-list li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+body main#content .content-blocks .wp-block-list li:last-child {
+  margin-bottom: 0;
+}
+
+body main#content .content-blocks .wp-block-list li::marker {
+  color: var(--color_key);
+  font-size: 0.85em;
+}
+
+body main#content .content-blocks .wp-block-list .wp-block-list {
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 body
@@ -1534,6 +1568,7 @@ body main#content .wp-block-table:not(.is-style-price-table) {
   margin: 32px auto;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border: 0 !important;
 }
 
 body main#content .wp-block-table:not(.is-style-price-table) table {
@@ -1569,7 +1604,7 @@ body
   .wp-block-table:not(.is-style-price-table)
   tbody
   tr:nth-child(odd) {
-  background-color: var(--color_white);
+  background-color: var(--color_white) !important;
 }
 
 body
@@ -1577,7 +1612,44 @@ body
   .wp-block-table:not(.is-style-price-table)
   tbody
   tr:nth-child(even) {
-  background-color: var(--color_quaternary);
+  background-color: var(--color_quaternary) !important;
+}
+
+/*
+  Gutenberg-tabellene på Selbu-sidene bruker første tbody-rad som tabellhode:
+  <tr><td><strong>...</strong></td></tr>. Reglene under håndterer dette.
+*/
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody
+  > tr:first-child:has(> td > strong) {
+  background-color: var(--color_quaternary) !important;
+}
+
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody
+  > tr:first-child:has(> td > strong)
+  > td {
+  font-weight: 700 !important;
+}
+
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody:has(> tr:first-child > td > strong)
+  > tr:nth-child(even) {
+  background-color: var(--color_white) !important;
+}
+
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody:has(> tr:first-child > td > strong)
+  > tr:nth-child(odd):not(:first-child) {
+  background-color: var(--color_quaternary) !important;
 }
 
 body main#content .wp-block-table:not(.is-style-price-table) caption {
