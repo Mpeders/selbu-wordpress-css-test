@@ -30,6 +30,10 @@
   --color_quaternary: #e5e1e6;
   --color_quinary: #edc7a2;
 
+  /* content widths */
+  --content_text_width: 760px;
+  --content_wide_width: 1120px;
+
   --color_key: #2d2d2d;
   --color_bg: #fcfcfc;
   --color_bg_top: #e9f7f3;
@@ -120,6 +124,56 @@ p,
   color: var(--color_key);
   margin: 0 0 16px !important;
   padding: 0 !important;
+}
+
+/*------------------------ Avsnitt / løpende tekst ------------------------- */
+
+/*
+  Samler frittstående overskrifter og avsnitt i samme, lesbare tekstspalte.
+  web3-skip kan brukes på enkeltblokker som skal beholde original plassering.
+*/
+body
+  main#content
+  .content-blocks
+  > :is(
+    .wp-block-heading,
+    .wp-block-paragraph,
+    .dss-block--acf-paragraph,
+    .dss-block--acf-rich-text,
+    .dss-block--acf-text
+  ):not(.web3-skip) {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: var(--content_text_width);
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body main#content .content-blocks > .wp-block-heading:not(.web3-skip) {
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+body main#content .content-blocks > .wp-block-paragraph:not(.web3-skip) {
+  margin-bottom: 24px !important;
+}
+
+body
+  main#content
+  .content-blocks
+  > :is(
+    .dss-block--acf-paragraph,
+    .dss-block--acf-rich-text,
+    .dss-block--acf-text
+  ):not(.web3-skip)
+  :is(h1, h2, h3, h4, p):last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 640px) {
+  body main#content .content-blocks > .wp-block-heading:not(.web3-skip) {
+    margin-top: 32px;
+  }
 }
 
 h1 {
@@ -1469,6 +1523,70 @@ ul.employees__list {
   font-size: 1.4rem;
 }
 
+/*------------------------ Standardtabeller ------------------------- */
+
+/* Selbu-profil for vanlige Gutenberg-tabeller. Prislister er unntatt. */
+body main#content .wp-block-table:not(.is-style-price-table) {
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: var(--content_wide_width);
+  margin: 32px auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body main#content .wp-block-table:not(.is-style-price-table) table {
+  width: 100%;
+  min-width: 620px;
+  margin: 0;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--color_tertiary);
+  background-color: var(--color_white);
+}
+
+body main#content .wp-block-table:not(.is-style-price-table) :is(th, td) {
+  padding: 9px 12px;
+  border: 0 !important;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.3;
+}
+
+body main#content .wp-block-table:not(.is-style-price-table) thead th {
+  font-weight: 700 !important;
+  background-color: var(--color_quaternary);
+}
+
+body main#content .wp-block-table:not(.is-style-price-table) thead tr {
+  border: 0 !important;
+}
+
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody
+  tr:nth-child(odd) {
+  background-color: var(--color_white);
+}
+
+body
+  main#content
+  .wp-block-table:not(.is-style-price-table)
+  tbody
+  tr:nth-child(even) {
+  background-color: var(--color_quaternary);
+}
+
+body main#content .wp-block-table:not(.is-style-price-table) caption {
+  padding: 8px 0;
+  color: var(--color_tertiary);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
 /*------------------------ Prisliste ------------------------- */
 
 .dss-block--acf-prices.tbody--light-primary {
@@ -1536,8 +1654,8 @@ main:has(.form) {
 }
 
 /*---------------- Selbu Web 2.0 module compatibility ----------------
-  Selbu uses the ACF image/text block, while the original Stbank rules
-  expect Gutenberg column blocks. Add TA1, TA2 or TA2R as an additional
+  Selbu uses the ACF image/text block, while the older Gutenberg rules
+  expect column blocks. Add TA1, TA2 or TA2R as an additional
   CSS class on the image/text block to opt in to the Web 3.0 card design.
 -------------------------------------------------------------------- */
 
